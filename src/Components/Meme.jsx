@@ -39,9 +39,15 @@ console.log(allMemes)
     }))
   }
 
+  function saveMeme(event) {
+    event.prevent.default()
+    
+  }
+
 
   return (
     <main>
+      <div className="main-wrapper">
       <div className="form">
         <input type="text"
                className="form--input" 
@@ -58,7 +64,7 @@ console.log(allMemes)
                onChange={handleChange}
         />
         <button onClick={getMemeImage} 
-                className="form--button">Get a new meme image 🖼
+                className="form--button"> 🔀 Meme image 🖼
         </button>
       </div>
       <div className="meme">
@@ -66,6 +72,10 @@ console.log(allMemes)
       <h2 className="meme--text top">{meme.topText}</h2>
       <h2 className="meme--text bottom">{meme.bottomText}</h2>
       </div>
+      <div className="save-btn"><button onClick="saveMeme()" id="save-button">Save Meme 🖼</button></div>
+      </div>
     </main>
+
+
   )
 }

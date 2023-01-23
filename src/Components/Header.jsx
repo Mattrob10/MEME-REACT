@@ -7,7 +7,8 @@ export default function Header(){
     <div className="nav">
       <img src={troll} className="troll"></img>
       <h2 className="header-title">Meme Generator</h2>
-      <h4 className="header-project">React Course - Project 3</h4>
+      {/* want to redo header so they have links to scroll down.   */}
+      <h4 className="header-project">Home</h4>
     </div>
   )
 }
