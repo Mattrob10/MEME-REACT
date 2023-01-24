@@ -51,10 +51,9 @@ export default function Meme() {
     return <MemesList key={uuidv4()} {...meme} removeMeme={removeMeme} />;
   });
 
-  //Not working properly
-  function removeMeme(savedMemes) {
+  function removeMeme(id) {
     setSavedMemes((currMemes) => {
-      return currMemes.filter((memes) => memes.id === savedMemes);
+      return currMemes.filter((memes) => memes.id !== id);
     });
   }
 
