@@ -1,5 +1,6 @@
 import React from 'react';
 import MemesList from './MemesList';
+import { v4 as uuidv4 } from 'uuid';
 // import memesData from "../memesData";
 const baseURL = 'https://api.imgflip.com/get_memes';
 export default function Meme() {
@@ -9,6 +10,7 @@ export default function Meme() {
     topText: '',
     bottomText: '',
     randomImage: 'http://i.imgflip.com/1bij.jpg',
+    id: uuidv4(),
   });
   const [allMemes, setAllMemes] = React.useState([]);
   const [savedMemes, setSavedMemes] = React.useState([]);
@@ -45,7 +47,7 @@ export default function Meme() {
   }
 
   const addMeme = savedMemes.map((meme, index) => {
-    return <MemesList key={index} {...meme} />;
+    return <MemesList key={meme.id} {...meme} />;
   });
 
   return (
