@@ -10,7 +10,7 @@ export default function Meme() {
     topText: '',
     bottomText: '',
     randomImage: 'http://i.imgflip.com/1bij.jpg',
-    id: uuidv4(),
+    id: '',
   });
   const [allMemes, setAllMemes] = React.useState([]);
   const [savedMemes, setSavedMemes] = React.useState([]);
@@ -37,6 +37,7 @@ export default function Meme() {
     setMeme((prevMeme) => ({
       ...prevMeme,
       [name]: value,
+      id: uuidv4(),
     }));
   }
 
@@ -46,9 +47,16 @@ export default function Meme() {
     });
   }
 
-  const addMeme = savedMemes.map((meme, index) => {
-    return <MemesList key={meme.id} {...meme} />;
+  const addMeme = savedMemes.map((meme) => {
+    return <MemesList key={uuidv4()} {...meme} removeMeme={removeMeme} />;
   });
+
+  //Not working properly
+  function removeMeme(savedMemes) {
+    setSavedMemes((currMemes) => {
+      return currMemes.filter((memes) => memes.id === savedMemes);
+    });
+  }
 
   return (
     <main>
