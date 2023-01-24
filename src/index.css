@@ -7,15 +7,15 @@
 body {
   font-family: 'Karla', sans-serif;
   margin: 0;
+  background-color: #e5b9f29c;
 }
-main {
-  padding: 36px;
-}
+
+/* Start of Nav */
 .nav {
   display: flex;
   align-items: center;
   height: 65px;
-  background: linear-gradient(90deg, #672280 1.18%, #d35a26 100%);
+  background: linear-gradient(90.41deg, #711f8d 1.14%, #a818da 100%);
   color: white;
   padding: 20px;
 }
@@ -36,43 +36,58 @@ main {
   font-size: 12px;
   margin-left: 50%;
   padding: 5px;
-  /* text-align: right; */
+}
+
+/* Start of Main */
+main {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-wrapper {
+  width: 700px;
 }
 
 /* Start of Form */
 .form {
-  display: grid;
-  grid-template: 40px 40px / 1fr 1fr;
-  gap: 17px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 1px solid;
 }
+
 .form--input {
   font-family: 'Karla', sans-serif;
   border-radius: 5px;
-  border: 1px solid #d5d4d8;
+  border: 2px solid #711f8d;
   text-indent: 5px;
 }
 
 .form--button {
-  grid-column: 1 / -1;
   font-family: 'Karla', sans-serif;
   background: linear-gradient(90.41deg, #711f8d 1.14%, #a818da 100%);
   color: white;
   border-radius: 5px;
   border: none;
+  padding: 7px;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .meme-wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
 .wrapper {
   border-radius: 10px;
   background: linear-gradient(90.41deg, #711f8d 1.14%, #a818da 100%);
-  margin: 1rem;
-  padding: 1rem;
+  margin: 2rem 1rem;
+  padding: 0.1rem;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .meme {
@@ -115,6 +130,7 @@ main {
   top: 0;
 }
 
+/* Meme button functionality */
 .meme-buttons {
   display: flex;
   justify-content: center;
@@ -138,20 +154,32 @@ main {
 }
 
 #edit-button {
-  border: 2px solid #711f8d;
   background-color: green;
   color: white;
 }
 
+#save-button-two {
+  background: linear-gradient(180deg, #711f8d 1.14%, #be27f0 100%);
+  color: white;
+}
+
 #delete-button {
-  border: 2px solid #711f8d;
-  background-color: crimson;
+  background: linear-gradient(180deg, #792122 1.14%, #ff0000 100%);
   color: white;
 }
 .new-meme {
-  margin-top: 20px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#save-button {
+  background: linear-gradient(90.41deg, #39db18 1.14%, #024e0f 100%);
+  padding: 10px;
+  color: #fff;
+  border-radius: 5px;
+  border-style: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
