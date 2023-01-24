@@ -1,81 +1,93 @@
-import React from "react";
+import React from 'react';
+import MemesList from './MemesList';
+import { v4 as uuidv4 } from 'uuid';
 // import memesData from "../memesData";
-const baseURL = "https://api.imgflip.com/get_memes"
-export default function Meme(){
-
+const baseURL = 'https://api.imgflip.com/get_memes';
+export default function Meme() {
   // const [memeImage, setMemeImage] = React.useState("")
 
-
   const [meme, setMeme] = React.useState({
-    topText: "",
-    bottomText: "",
-    randomImage: "http://i.imgflip.com/1bij.jpg" 
-})
-const [allMemes, setAllMemes] = React.useState([])
+    topText: '',
+    bottomText: '',
+    randomImage: 'http://i.imgflip.com/1bij.jpg',
+    id: '',
+  });
+  const [allMemes, setAllMemes] = React.useState([]);
+  const [savedMemes, setSavedMemes] = React.useState([]);
 
-React.useEffect(() =>{
+  React.useEffect(() => {
     fetch(baseURL)
-        .then(res => res.json())
-        .then(data => setAllMemes(data.data.memes))
-}, [])
-console.log(allMemes)
-  function getMemeImage(){
+      .then((res) => res.json())
+      .then((data) => setAllMemes(data.data.memes));
+  }, []);
+  function getMemeImage() {
     // alert("CLICKED")
-    
-    const randomNumber = Math.floor(Math.random() * allMemes.length)
-    const url = allMemes[randomNumber].url
-    setMeme(prevMeme => ({
+
+    const randomNumber = Math.floor(Math.random() * allMemes.length);
+    const url = allMemes[randomNumber].url;
+    setMeme((prevMeme) => ({
       ...prevMeme,
-      randomImage: url
-  }))
+      randomImage: url,
+    }));
     // alert(url)
   }
-  
-  function handleChange(event){
-    const {name, value} = event.target
-    setMeme(prevMeme => ({
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setMeme((prevMeme) => ({
       ...prevMeme,
-      [name]: value
-    }))
+      [name]: value,
+      id: uuidv4(),
+    }));
   }
 
-  function saveMeme(event) {
-    event.prevent.default()
-    
+  function handleSave() {
+    setSavedMemes((prevMemes) => {
+      return [...prevMemes, meme];
+    });
   }
 
+  const addMeme = savedMemes.map((meme) => {
+    return <MemesList key={uuidv4()} {...meme} removeMeme={removeMeme} />;
+  });
+
+  function removeMeme(id) {
+    setSavedMemes((currMemes) => {
+      return currMemes.filter((memes) => memes.id !== id);
+    });
+  }
 
   return (
     <main>
-      <div className="main-wrapper">
-      <div className="form">
-        <input type="text"
-               className="form--input" 
-               placeholder="top text"
-               name="topText"
-               value={meme.topText}
-               onChange={handleChange}
+      <div className='form'>
+        <input
+          type='text'
+          className='form--input'
+          placeholder='top text'
+          name='topText'
+          value={meme.topText}
+          onChange={handleChange}
         />
-        <input type="text" 
-               className="form--input" 
-               placeholder="bottom text"
-               name="bottomText"
-               value={meme.bottomText}
-               onChange={handleChange}
+        <input
+          type='text'
+          className='form--input'
+          placeholder='bottom text'
+          name='bottomText'
+          value={meme.bottomText}
+          onChange={handleChange}
         />
-        <button onClick={getMemeImage} 
-                className="form--button"> 🔀 Meme image 🖼
+        <button onClick={getMemeImage} className='form--button'>
+          Get a new meme image 🖼
         </button>
+        <button onClick={handleSave}>Save</button>
       </div>
-      <div className="meme">
-      <img src={meme.randomImage} className="memeImg" />
-      <h2 className="meme--text top">{meme.topText}</h2>
-      <h2 className="meme--text bottom">{meme.bottomText}</h2>
+      <div className='meme'>
+        <img src={meme.randomImage} className='memeImg' />
+        <h2 className='meme--text top'>{meme.topText}</h2>
+        <h2 className='meme--text bottom'>{meme.bottomText}</h2>
       </div>
-      <div className="save-btn"><button onClick="saveMeme()" id="save-button">Save Meme 🖼</button></div>
-      </div>
+      <div className='meme-wrapper'>{addMeme}</div>
     </main>
-
-
-  )
+  );
 }
+
