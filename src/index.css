@@ -8,9 +8,7 @@ body {
   font-family: 'Karla', sans-serif;
   margin: 0;
 }
-main {
-  padding: 36px;
-}
+
 .nav {
   display: flex;
   align-items: center;
@@ -39,11 +37,23 @@ main {
   /* text-align: right; */
 }
 
+/* Start of Main */
+main {
+  padding: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-wrapper{
+  width: 700px;
+}
+
 /* Start of Form */
 .form {
-  display: grid;
-  grid-template: 40px 40px / 1fr 1fr;
-  gap: 17px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 1px solid;
 }
 .form--input {
   font-family: 'Karla', sans-serif;
@@ -53,12 +63,12 @@ main {
 }
 
 .form--button {
-  grid-column: 1 / -1;
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   background: linear-gradient(90.41deg, #711f8d 1.14%, #a818da 100%);
   color: white;
   border-radius: 5px;
   border: none;
+  padding: 7px;
   cursor: pointer;
 }
 
