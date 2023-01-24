@@ -10,6 +10,7 @@ body {
   background-color: #e5b9f29c;
 }
 
+
 /* Start of Nav */
 .nav {
   display: flex;
@@ -47,6 +48,17 @@ main {
 }
 
 .main-wrapper {
+  width: 700px;
+}
+
+/* Start of Main */
+main {
+  padding: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.main-wrapper{
   width: 700px;
 }
 
